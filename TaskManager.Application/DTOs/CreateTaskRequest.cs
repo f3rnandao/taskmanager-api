@@ -1,0 +1,10 @@
+using TaskManager.Domain.Enums;
+
+namespace TaskManager.Application.DTOs;
+
+public record CreateTaskRequest(
+    string Title,
+    string? Description,
+    TaskPriority Priority,
+    Guid ProjectId
+);
