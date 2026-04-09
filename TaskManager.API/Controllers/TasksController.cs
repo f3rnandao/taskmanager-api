@@ -26,32 +26,14 @@ public class TasksController : ControllerBase
     public async Task<IActionResult> Create(
         [FromBody] CreateTaskRequest request, CancellationToken ct)
     {
-        try
-        {
-            var task = await _taskService.CreateTaskAsync(request, ct);
-            return Created($"api/tasks/{task.Id}", task);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
+        var task = await _taskService.CreateTaskAsync(request, ct);
+        return Created($"api/tasks/{task.Id}", task);
     }
 
     [HttpPatch("{id:guid}/complete")]
     public async Task<IActionResult> Complete(Guid id, CancellationToken ct)
     {
-        try
-        {
-            var task = await _taskService.CompleteTaskAsync(id, ct);
-            return Ok(task);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            return NotFound(new { message = ex.Message });
-        }
-        catch (InvalidOperationException ex)
-        {
-            return BadRequest(new { message = ex.Message });
-        }
+        var task = await _taskService.CompleteTaskAsync(id, ct);
+        return Ok(task);
     }
 }
