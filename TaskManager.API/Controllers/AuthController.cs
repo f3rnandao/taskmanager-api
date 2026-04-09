@@ -16,29 +16,15 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Register(
         [FromBody] RegisterRequest request, CancellationToken ct)
     {
-        try
-        {
-            var response = await _authService.RegisterAsync(request, ct);
-            return Created($"api/auth/{response.UserId}", response);
-        }
-        catch (InvalidOperationException ex)
-        {
-            return Conflict(new { message = ex.Message });
-        }
+        var response = await _authService.RegisterAsync(request, ct);
+        return Created($"api/auth/{response.UserId}", response);
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login(
         [FromBody] LoginRequest request, CancellationToken ct)
     {
-        try
-        {
-            var response = await _authService.LoginAsync(request, ct);
-            return Ok(response);
-        }
-        catch (UnauthorizedAccessException ex)
-        {
-            return Unauthorized(new { message = ex.Message });
-        }
+        var response = await _authService.LoginAsync(request, ct);
+        return Ok(response);
     }
 }
