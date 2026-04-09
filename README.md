@@ -2,6 +2,14 @@
 
 ![Build and Test](https://github.com/f3rnandao/taskmanager-api/actions/workflows/build.yml/badge.svg)
 
+## Live Demo
+
+API running on Azure App Service:
+
+```
+https://taskmanager-api-fernando.azurewebsites.net/swagger
+```
+
 A RESTful API for task and project management built with .NET 8, Clean Architecture, PostgreSQL, Docker, and GitHub Actions CI/CD.
 
 ## Tech Stack
